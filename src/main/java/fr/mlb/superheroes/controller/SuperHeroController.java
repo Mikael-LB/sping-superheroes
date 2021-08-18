@@ -1,6 +1,5 @@
 package fr.mlb.superheroes.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import fr.mlb.superheroes.bo.Category;
+import fr.mlb.superheroes.bo.CategoryEnum;
 import fr.mlb.superheroes.bo.SuperHero;
 import fr.mlb.superheroes.utils.Utils;
 
 @RestController
 public class SuperHeroController {
-	private java.util.List<SuperHero> lstSuperHeros = Utils.InitListe();
+	private List<SuperHero> lstSuperHeros = Utils.InitListe();
 
 	@GetMapping("/list")
 	public ModelAndView list() {
@@ -46,6 +47,8 @@ public class SuperHeroController {
 	@GetMapping("/create")
 	public ModelAndView showCreateForm() {
 		ModelAndView mav = new ModelAndView("frontoffice/createSuperHero");
+		CategoryEnum[] categoryEnum = CategoryEnum.values();
+		mav.addObject("categoryEnum", categoryEnum);
 		return mav;
 	}
 	
@@ -57,24 +60,27 @@ public class SuperHeroController {
 	 * @param lastname
 	 * @return
 	 */
-	@PostMapping("/create")
+	@PostMapping("/createPost")
 	public ModelAndView create(
 			@RequestParam("nickname") String nickname,
 			@RequestParam("superpower") String superpower,
 			@RequestParam("firstname") String firstname,
 			@RequestParam("lastname") String lastname,
-			@RequestParam("category") String category
+			@RequestParam("category") CategoryEnum categoryEnum
 			) {
 		ModelAndView mav = new ModelAndView("frontoffice/detailOneSuperHero");
+		Category category = null;
 		
-		SuperHero sh = new SuperHero(nickname,superpower,firstname,lastname);
+		try {
+			category = new Category(categoryEnum.getMessage());
+		}catch (Exception e) {
+			System.out.println("Erreur de conversion en Enum de la catégorie");
+		}
 		
-		System.out.println(category);
-		System.out.println(sh);
+		SuperHero sh = new SuperHero(nickname,superpower,firstname,lastname, category);		
 		lstSuperHeros.add(sh);
 		
 		mav.addObject("superHero",sh);
-		mav.addObject("category",category);
 		return mav;
 	}
 }

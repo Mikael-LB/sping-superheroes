@@ -6,17 +6,20 @@ public class SuperHero {
 	private String superpower;
 	private String firstname;
 	private String lastname;
+	private Category category;
 	
 	public SuperHero() {
 		super();
 	}
 
-	public SuperHero(String nickname, String superpower, String firstname, String lastname) {
+	public SuperHero(String nickname, String superpower, String firstname, String lastname,
+			Category category) {
 		super();
 		this.nickname = nickname;
 		this.superpower = superpower;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.category = category;
 	}
 
 	public String getNickname() {
@@ -51,9 +54,17 @@ public class SuperHero {
 		this.lastname = lastname;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "SuperHero [nickname=" + nickname + ", superpower=" + superpower + ", firstname=" + firstname
-				+ ", lastname=" + lastname + "]";
-	}
+				+ ", lastname=" + lastname + ", category=" + category + "]";
+	}	
 }

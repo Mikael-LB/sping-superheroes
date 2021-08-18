@@ -13,6 +13,6 @@
 	<p>Super pouvoir : ${ superHero.superpower }</p>
 	<p>Prénom : ${ superHero.firstname }</p>
 	<p>Nom : ${ superHero.lastname }</p>
-	<p>Catégorie : ${ category }</p>
+	<p>Catégorie : ${ superHero.category.name }</p>
 </body>
 </html>
