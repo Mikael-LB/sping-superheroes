@@ -1,18 +1,40 @@
 package fr.mlb.superheroes.bo;
 
+import java.time.LocalDate;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class SuperHero {
-	
+	private Long id;
 	private String nickname;
 	private String superpower;
 	private String firstname;
 	private String lastname;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private LocalDate dateOfBirth;
 	private Category category;
 	
+	/**
+	 * Contructor empty
+	 */
 	public SuperHero() {
 		super();
 	}
 
-	public SuperHero(String nickname, String superpower, String firstname, String lastname,
+	/**
+	 * constructor without id
+	 * @param nickname
+	 * @param superpower
+	 * @param firstname
+	 * @param lastname
+	 * @param dateOfBirth
+	 * @param category
+	 */
+	public SuperHero(String nickname,
+			String superpower,
+			String firstname,
+			String lastname,
+			LocalDate dateOfBirth,
 			Category category) {
 		super();
 		this.nickname = nickname;
@@ -20,6 +42,36 @@ public class SuperHero {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.category = category;
+	}
+
+	/**
+	 * constructor with id
+	 * @param id
+	 * @param nickname
+	 * @param superpower
+	 * @param firstname
+	 * @param lastname
+	 * @param dateOfBirth
+	 * @param category
+	 */
+	public SuperHero(Long id, String nickname, String superpower, String firstname, String lastname,
+			LocalDate dateOfBirth, Category category) {
+		super();
+		this.id = id;
+		this.nickname = nickname;
+		this.superpower = superpower;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.dateOfBirth = dateOfBirth;
+		this.category = category;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNickname() {
@@ -62,9 +114,18 @@ public class SuperHero {
 		this.category = category;
 	}
 
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
 	@Override
 	public String toString() {
-		return "SuperHero [nickname=" + nickname + ", superpower=" + superpower + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", category=" + category + "]";
-	}	
+		return "SuperHero [id=" + id + ", nickname=" + nickname + ", superpower=" + superpower + ", firstname="
+				+ firstname + ", lastname=" + lastname + ", dateOfBirth=" + dateOfBirth + ", category=" + category
+				+ "]";
+	}
 }

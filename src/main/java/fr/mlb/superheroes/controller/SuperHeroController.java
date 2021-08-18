@@ -1,8 +1,12 @@
 package fr.mlb.superheroes.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.format.datetime.DateFormatter;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +53,8 @@ public class SuperHeroController {
 		ModelAndView mav = new ModelAndView("frontoffice/createSuperHero");
 		CategoryEnum[] categoryEnum = CategoryEnum.values();
 		mav.addObject("categoryEnum", categoryEnum);
+		mav.addObject("superheroForm",
+				new SuperHero("","","","",LocalDate.now(),new Category("")));
 		return mav;
 	}
 	
@@ -60,24 +66,28 @@ public class SuperHeroController {
 	 * @param lastname
 	 * @return
 	 */
-	@PostMapping("/createPost")
+	@PostMapping("/create-post")
 	public ModelAndView create(
+			@ModelAttribute("superheroForm") SuperHero sh /*
 			@RequestParam("nickname") String nickname,
 			@RequestParam("superpower") String superpower,
 			@RequestParam("firstname") String firstname,
 			@RequestParam("lastname") String lastname,
+			@RequestParam("dateOfBirth") String dateOfBirth,
 			@RequestParam("category") CategoryEnum categoryEnum
-			) {
+			*/) {
 		ModelAndView mav = new ModelAndView("frontoffice/detailOneSuperHero");
 		Category category = null;
-		
-		try {
-			category = new Category(categoryEnum.getMessage());
-		}catch (Exception e) {
-			System.out.println("Erreur de conversion en Enum de la catégorie");
-		}
-		
-		SuperHero sh = new SuperHero(nickname,superpower,firstname,lastname, category);		
+//		System.out.println(dateOfBirth);
+//		try {
+//			category = new Category(categoryEnum.getMessage());
+//		}catch (Exception e) {
+//			System.out.println("Erreur de conversion en Enum de la catégorie");
+//		}
+//		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		SuperHero sh = new SuperHero(nickname,superpower,firstname,lastname,
+//				LocalDate.parse(dateOfBirth,df),category);		
+		System.out.println(sh);
 		lstSuperHeros.add(sh);
 		
 		mav.addObject("superHero",sh);
