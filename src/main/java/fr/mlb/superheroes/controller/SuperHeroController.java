@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,11 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.mlb.superheroes.bo.Category;
 import fr.mlb.superheroes.bo.CategoryEnum;
 import fr.mlb.superheroes.bo.SuperHero;
+import fr.mlb.superheroes.service.SuperHeroService;
 import fr.mlb.superheroes.utils.Utils;
 
 @RestController
 public class SuperHeroController {
 	private List<SuperHero> lstSuperHeros = Utils.InitListe();
+	@Autowired
+	private SuperHeroService superHeroService;
 
 	@GetMapping("/list")
 	public ModelAndView list() {
@@ -87,7 +91,7 @@ public class SuperHeroController {
 //		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 //		SuperHero sh = new SuperHero(nickname,superpower,firstname,lastname,
 //				LocalDate.parse(dateOfBirth,df),category);		
-		System.out.println(sh);
+		superHeroService.createOrUpdate(sh);
 		lstSuperHeros.add(sh);
 		
 		mav.addObject("superHero",sh);
