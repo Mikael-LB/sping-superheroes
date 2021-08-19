@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import fr.mlb.superheroes.bo.Category;
 import fr.mlb.superheroes.bo.CategoryEnum;
 import fr.mlb.superheroes.bo.SuperHero;
+import fr.mlb.superheroes.bo.SuperPower;
 import fr.mlb.superheroes.service.SuperHeroService;
 import fr.mlb.superheroes.utils.Utils;
 
@@ -56,9 +57,15 @@ public class SuperHeroController {
 	public ModelAndView showCreateForm() {
 		ModelAndView mav = new ModelAndView("frontoffice/createSuperHero");
 		CategoryEnum[] categoryEnum = CategoryEnum.values();
+		mav.addObject("superPowerList", Utils.InitSuperPowerList());
 		mav.addObject("categoryEnum", categoryEnum);
 		mav.addObject("superheroForm",
-				new SuperHero("","","","",LocalDate.now(),new Category("")));
+				new SuperHero("",
+						new SuperPower(""),
+						"",
+						"",
+						LocalDate.now(),
+						new Category("")));
 		return mav;
 	}
 	
@@ -81,7 +88,7 @@ public class SuperHeroController {
 			@RequestParam("category") CategoryEnum categoryEnum
 			*/) {
 		ModelAndView mav = new ModelAndView("frontoffice/detailOneSuperHero");
-		Category category = null;
+//		Category category = null;
 //		System.out.println(dateOfBirth);
 //		try {
 //			category = new Category(categoryEnum.getMessage());
@@ -92,6 +99,7 @@ public class SuperHeroController {
 //		SuperHero sh = new SuperHero(nickname,superpower,firstname,lastname,
 //				LocalDate.parse(dateOfBirth,df),category);		
 		superHeroService.createOrUpdate(sh);
+		
 		lstSuperHeros.add(sh);
 		
 		mav.addObject("superHero",sh);

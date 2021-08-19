@@ -12,7 +12,7 @@
 	<%@include file="navmenu/mainMenu.jsp"%>
 	<h1>Détail du super héros</h1>
 	<p>Surnom : ${ superHero.nickname }</p>
-	<p>Super pouvoir : ${ superHero.superpower }</p>
+	<p>Super pouvoir : ${ superHero.superpower.name }</p>
 	<p>Prénom : ${ superHero.firstname }</p>
 	<p>Nom : ${ superHero.lastname }</p>
 	<p>
