@@ -10,6 +10,6 @@
 	<%@include file="navmenu/mainMenu.jsp" %>
 	<h1>Liste des super héros</h1>
 	<p>Surnom de super héros : ${ listSuperHero[0].nickname }</p>
-	<p>Super pouvoir : ${ listSuperHero[0].superpower }</p>
+	<p>Super pouvoir : ${ listSuperHero[0].superpower.name }</p>
 </body>
 </html>

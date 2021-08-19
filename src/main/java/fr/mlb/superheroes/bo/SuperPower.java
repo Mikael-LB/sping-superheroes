@@ -1,25 +1,40 @@
 package fr.mlb.superheroes.bo;
 
-
-public class Category {
+public class SuperPower {
 	private Integer id;
 	private String name;
 
-	public Category() {
+	/**
+	 * Constructor empty
+	 */
+	public SuperPower() {
 		super();
 	}
 
-	public Category(String name) {
+	/**
+	 * Constructor with no id
+	 * @param name
+	 */
+	public SuperPower(String name) {
 		super();
 		this.name = name;
 	}
 
-	public Category(Integer id, String name) {
+	/**
+	 * Constructor with id
+	 * @param id
+	 * @param name
+	 */
+	public SuperPower(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
+	/**
+	 * Getters and Setters
+	 * @return
+	 */
 	public Integer getId() {
 		return id;
 	}
@@ -36,9 +51,11 @@ public class Category {
 		this.name = name;
 	}
 
+	/**
+	 * toString
+	 */
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
+		return "SuperPower [id=" + id + ", name=" + name + "]";
 	}
-	
 }

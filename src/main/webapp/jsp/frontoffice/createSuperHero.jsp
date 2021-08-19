@@ -20,7 +20,11 @@
 		</p>
 		<p>
 			<form:label path="superpower">Super pouvoir</form:label>
-			<form:input type="text" path="superpower" />
+			<form:select path="superpower" id="superpower">
+				<c:forEach var="suppwr" items="${ superPowerList }">
+					<form:option value="${suppwr.name}">${suppwr.name }</form:option>
+				</c:forEach>
+			</form:select>
 		</p>
 		<p>
 			<form:label path="firstname">Prénom du super héros</form:label>

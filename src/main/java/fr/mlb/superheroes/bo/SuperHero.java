@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class SuperHero {
 	private Long id;
 	private String nickname;
-	private String superpower;
+	private SuperPower superpower;
 	private String firstname;
 	private String lastname;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -31,7 +31,7 @@ public class SuperHero {
 	 * @param category
 	 */
 	public SuperHero(String nickname,
-			String superpower,
+			SuperPower superpower,
 			String firstname,
 			String lastname,
 			LocalDate dateOfBirth,
@@ -54,8 +54,13 @@ public class SuperHero {
 	 * @param dateOfBirth
 	 * @param category
 	 */
-	public SuperHero(Long id, String nickname, String superpower, String firstname, String lastname,
-			LocalDate dateOfBirth, Category category) {
+	public SuperHero(Long id,
+			String nickname,
+			SuperPower superpower,
+			String firstname,
+			String lastname,
+			LocalDate dateOfBirth,
+			Category category) {
 		super();
 		this.id = id;
 		this.nickname = nickname;
@@ -82,11 +87,11 @@ public class SuperHero {
 		this.nickname = nickname;
 	}
 
-	public String getSuperpower() {
+	public SuperPower getSuperpower() {
 		return superpower;
 	}
 
-	public void setSuperpower(String superpower) {
+	public void setSuperpower(SuperPower superpower) {
 		this.superpower = superpower;
 	}
 
