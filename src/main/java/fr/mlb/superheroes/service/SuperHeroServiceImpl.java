@@ -2,39 +2,39 @@ package fr.mlb.superheroes.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.mlb.superheroes.bo.SuperHero;
+import fr.mlb.superheroes.dal.SuperHeroDAO;
 
 @Service
 public class SuperHeroServiceImpl implements SuperHeroService {
+	@Autowired
+	SuperHeroDAO superHeroDao;
 
 	@Override
+	@Transactional
 	public SuperHero createOrUpdate(SuperHero superHero) {
-		System.out.println("création de : " +superHero);
-		// TODO Auto-generated method stub
-		return null;
+		return superHeroDao.save(superHero);
 	}
 
 	@Override
-	public void delete(int id) {
-		System.out.println("suppression de l'id : " +id);
-		// TODO Auto-generated method stub
-
+	@Transactional
+	public void delete(SuperHero superHero) {
+		superHeroDao.delete(superHero);
 	}
 
 	@Override
-	public SuperHero findById(int id) {
-		System.out.println("recherche du super héros avec id : " +id);
-		// TODO Auto-generated method stub
-		return null;
+	public SuperHero findById(Long id) {
+		return superHeroDao.findById(id).get();
 	}
 
 	@Override
 	public List<SuperHero> findAll() {
-		System.out.println("Récupération de la liste des super héros");
-		// TODO Auto-generated method stub
-		return null;
+		return (List<SuperHero>) superHeroDao.findAll();
 	}
 
 }

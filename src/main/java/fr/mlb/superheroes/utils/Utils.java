@@ -7,6 +7,7 @@ import java.util.List;
 import fr.mlb.superheroes.bo.Category;
 import fr.mlb.superheroes.bo.SuperHero;
 import fr.mlb.superheroes.bo.SuperPower;
+import fr.mlb.superheroes.service.SuperPowerService;
 
 public class Utils {
 	
@@ -30,11 +31,19 @@ public class Utils {
 		return lstSuperHeros;
 	}
 	
-	public static List<SuperPower> InitSuperPowerList(){
+	public static List<SuperPower> InitSuperPowerList(SuperPowerService spService){
 		List<SuperPower> lstSuperPower = new ArrayList<SuperPower>();
-		lstSuperPower.add(new SuperPower("Armure"));
-		lstSuperPower.add(new SuperPower("Fouet"));
-		lstSuperPower.add(new SuperPower("Laser"));
+		if (spService.findAll().isEmpty()) {
+			lstSuperPower.add(
+					spService.createOrUpdate(
+							new SuperPower("Armure")));
+			lstSuperPower.add(
+					spService.createOrUpdate(
+							new SuperPower("Fouet")));
+			lstSuperPower.add(
+					spService.createOrUpdate(
+							new SuperPower("Laser")));
+		}
 		return lstSuperPower;
 	}
 
