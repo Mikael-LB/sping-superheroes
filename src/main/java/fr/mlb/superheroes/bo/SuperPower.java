@@ -1,7 +1,17 @@
 package fr.mlb.superheroes.bo;
 
-public class SuperPower {
-	private Integer id;
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class SuperPower{
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private String name;
 
 	/**
@@ -25,7 +35,7 @@ public class SuperPower {
 	 * @param id
 	 * @param name
 	 */
-	public SuperPower(Integer id, String name) {
+	public SuperPower(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -35,11 +45,11 @@ public class SuperPower {
 	 * Getters and Setters
 	 * @return
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

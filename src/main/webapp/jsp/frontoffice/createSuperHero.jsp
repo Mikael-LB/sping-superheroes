@@ -12,7 +12,7 @@
 <body>
 	<%@include file="navmenu/mainMenu.jsp"%>
 	<h1>Nouveau super héros</h1>
-	<form:form action="/create-post" method="post"
+	<form:form action="/superheros/create" method="post"
 		modelAttribute="superheroForm">
 		<p>
 			<form:label path="nickname">Surnom du super héros</form:label>
@@ -20,9 +20,9 @@
 		</p>
 		<p>
 			<form:label path="superpower">Super pouvoir</form:label>
-			<form:select path="superpower" id="superpower">
+			<form:select path="superpower">
 				<c:forEach var="suppwr" items="${ superPowerList }">
-					<form:option value="${suppwr.name}">${suppwr.name }</form:option>
+					<form:option value="${ suppwr.id }">${ suppwr.name }</form:option>
 				</c:forEach>
 			</form:select>
 		</p>

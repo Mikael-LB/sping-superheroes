@@ -2,16 +2,28 @@ package fr.mlb.superheroes.bo;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.transaction.Transactional;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
 public class SuperHero {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nickname;
+	@OneToOne
 	private SuperPower superpower;
 	private String firstname;
 	private String lastname;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dateOfBirth;
+	@OneToOne
 	private Category category;
 	
 	/**
@@ -41,6 +53,7 @@ public class SuperHero {
 		this.superpower = superpower;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.dateOfBirth = dateOfBirth;
 		this.category = category;
 	}
 
