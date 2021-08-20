@@ -27,7 +27,7 @@ import fr.mlb.superheroes.utils.Utils;
 @RestController
 @RequestMapping("/superheros")
 public class SuperHeroController {
-	private List<SuperHero> lstSuperHeros = Utils.InitListe();
+	
 	@Autowired
 	private SuperHeroService superHeroService;
 	@Autowired
@@ -37,23 +37,25 @@ public class SuperHeroController {
 
 	@GetMapping("/list")
 	public ModelAndView list() {
+		List<SuperHero> lstSuperHeros = superHeroService.findAll();
+		
 		ModelAndView mav = new ModelAndView("frontoffice/listSuperHeros");
-
 		mav.addObject("listSuperHero", lstSuperHeros);
 		return mav;
 	}
 
 	@GetMapping("/detail/{id}")
-	public ModelAndView detailOne(@PathVariable("id") String idInString) {
-		ModelAndView mav = new ModelAndView("frontoffice/detailOneSuperHero");
+	public ModelAndView detailOne(@PathVariable("id") String idInString) {		
 		Long id = 0L;
+		
 		try {
 			id = Long.parseLong(idInString);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println("ici");
 		SuperHero sh = superHeroService.findById(id);
+		
+		ModelAndView mav = new ModelAndView("frontoffice/detailOneSuperHero");
 		mav.addObject("superHero", sh);
 		return mav;
 	}
@@ -64,8 +66,9 @@ public class SuperHeroController {
 	 */
 	@GetMapping("/create")
 	public ModelAndView showCreateForm() {
-		ModelAndView mav = new ModelAndView("frontoffice/createSuperHero");
 		CategoryEnum[] categoryEnum = CategoryEnum.values();
+		
+		ModelAndView mav = new ModelAndView("frontoffice/createSuperHero");
 		mav.addObject("superPowerList",superPowerService.findAll());
 		mav.addObject("categoryEnum", categoryEnum);
 		mav.addObject("superheroForm",
@@ -104,14 +107,16 @@ public class SuperHeroController {
 		}catch (Exception e) {
 			System.out.println("Erreur de conversion en Enum de la catégorie");
 		}
-		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
 		Long id = Long.parseLong(superpowerIdString);
-		System.out.println(id);
+		
+		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		SuperPower sp = superPowerService.findById(id);
+		
 		SuperHero sh = new SuperHero(nickname,sp,firstname,lastname,
 				LocalDate.parse(dateOfBirth,df),category);		
 		sh = superHeroService.createOrUpdate(sh);
-		System.out.println(sh);
+		
 		//Memory : redirect:route and not redirect:nameOfJspFile
 		ModelAndView mav = new ModelAndView("redirect:/superheros/detail/"
 											+sh.getId());
