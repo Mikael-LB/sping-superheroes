@@ -12,19 +12,9 @@ import fr.mlb.superheroes.utils.Utils;
 
 @RestController
 public class HomeController {
-	@Autowired
-	SuperPowerService spService;
-	@Autowired
-	CategoryService categoryService;
-	@Autowired
-	SuperHeroService shService;
 	
 	@RequestMapping("/")
 	public ModelAndView index() {
-		//init data in db
-		Utils.InitSuperPowerList(spService);
-		Utils.InitCategoryList(categoryService);
-		Utils.InitSuperHeroList(shService, spService, categoryService);
 		
 		ModelAndView mav = new ModelAndView("frontoffice/index");
 		return mav;

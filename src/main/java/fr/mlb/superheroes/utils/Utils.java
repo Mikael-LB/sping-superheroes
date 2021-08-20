@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.stereotype.Component;
 
 import fr.mlb.superheroes.bo.Category;
 import fr.mlb.superheroes.bo.CategoryEnum;
