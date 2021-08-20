@@ -32,18 +32,19 @@ public class SuperPowerController {
 	public ModelAndView createSuperPower(
 			@ModelAttribute("superPowerForm") SuperPower sp
 			) {
-		ModelAndView mav = new ModelAndView("/frontoffice/createSuperPower");
 		
 		superPowerService.createOrUpdate(sp);
 		
+		ModelAndView mav = new ModelAndView("redirect:/superpower/add");
 		return mav;
 	}
 	
 	@GetMapping("/list")
 	public ModelAndView showList() {
-		ModelAndView mav = new ModelAndView("/frontoffice/listSuperPower");
 		List<SuperPower>lstSuperPower = new ArrayList<SuperPower>();
 		lstSuperPower = superPowerService.findAll();
+		
+		ModelAndView mav = new ModelAndView("/frontoffice/listSuperPower");
 		mav.addObject("lstSuperPower", lstSuperPower);
 		return mav;
 	}
@@ -52,9 +53,9 @@ public class SuperPowerController {
 	public ModelAndView deleteSuperPower(
 			@RequestParam("id") Long id
 			) {
+		superPowerService.delete(id);
 		//Memory : redirect:route and not redirect:nameOfJspFile
 		ModelAndView mav = new ModelAndView("redirect:/superpower/list");
-		superPowerService.delete(id);
 		return mav;
 	}
 }
