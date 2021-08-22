@@ -13,12 +13,12 @@
 
 	<c:forEach var="superpower" items="${ lstSuperPower }">
 		<div>
-			<p>${ superpower.name }
-				<form action="/superpower/delete" method="POST" )>
+			<form action="/superpower/delete" method="POST" )>
+				<p>${ superpower.name }
 					<input type="hidden" name="id" value="${ superpower.id }" />
 					<input type="submit" value="X" />
-				</form>
-			</p>
+				</p>
+			</form>
 		</div>
 	</c:forEach>
 </body>
