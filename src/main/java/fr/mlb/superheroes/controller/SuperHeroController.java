@@ -35,9 +35,33 @@ public class SuperHeroController {
 	@Autowired
 	private CategoryService categoryService;
 
-	@GetMapping("/list")
-	public ModelAndView list() {
-		List<SuperHero> lstSuperHeros = superHeroService.findAll();
+	@GetMapping("/list/{sortBy}")
+	public ModelAndView list(@PathVariable("sortBy")String sortBy) {
+		List<SuperHero> lstSuperHeros = null;
+		switch (sortBy) {
+		case "sortByNicknameAsc":
+			lstSuperHeros = superHeroService.findAllSortByNicknameAsc();
+			break;
+		case "sortByNicknameDesc":
+			lstSuperHeros = superHeroService.findAllSortByNicknameDesc();
+			break;
+		case "sortByFirstameAsc":
+			lstSuperHeros = superHeroService.findAllSortByFirstnameAsc();
+			break;
+		case "sortByFirstnameDesc":
+			lstSuperHeros = superHeroService.findAllSortByFirstnameDesc();
+			break;
+		case "sortByLastnameAsc":
+			lstSuperHeros = superHeroService.findAllSortByLastnameAsc();
+			break;
+		case "sortByLastnameDesc":
+			lstSuperHeros = superHeroService.findAllSortByLastnameDesc();
+			break;
+		default:
+			lstSuperHeros = superHeroService.findAll();
+			break;
+		}
+		
 		
 		ModelAndView mav = new ModelAndView("frontoffice/listSuperHeros");
 		mav.addObject("listSuperHero", lstSuperHeros);
@@ -102,10 +126,9 @@ public class SuperHeroController {
 		
 		Category category = null;
 		try {
-			category = new Category(categoryEnum.getMessage());
-			categoryService.createOrUpdate(category);
+			category = categoryService.findByName(categoryEnum.getMessage());
 		}catch (Exception e) {
-			System.out.println("Erreur de conversion en Enum de la catégorie");
+			System.out.println(e.getMessage());;
 		}
 		
 		Long id = Long.parseLong(superpowerIdString);

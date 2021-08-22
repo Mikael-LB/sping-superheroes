@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.transaction.Transactional;
 
@@ -17,13 +18,13 @@ public class SuperHero {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nickname;
-	@OneToOne
+	@ManyToOne
 	private SuperPower superpower;
 	private String firstname;
 	private String lastname;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dateOfBirth;
-	@OneToOne
+	@ManyToOne
 	private Category category;
 	
 	/**

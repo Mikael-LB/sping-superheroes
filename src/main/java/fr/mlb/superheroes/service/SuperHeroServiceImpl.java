@@ -37,4 +37,34 @@ public class SuperHeroServiceImpl implements SuperHeroService {
 		return (List<SuperHero>) superHeroDao.findAll();
 	}
 
+	@Override
+	public List<SuperHero> findAllSortByNicknameAsc() {
+		return (List<SuperHero>) superHeroDao.findAllByOrderByNicknameAsc();
+	}
+
+	@Override
+	public List<SuperHero> findAllSortByNicknameDesc() {
+		return (List<SuperHero>) superHeroDao.findAllByOrderByNicknameDesc();
+	}
+
+	@Override
+	public List<SuperHero> findAllSortByFirstnameAsc() {
+		return (List<SuperHero>) superHeroDao.findAllByOrderByFirstnameAsc();
+	}
+
+	@Override
+	public List<SuperHero> findAllSortByFirstnameDesc() {
+		return (List<SuperHero>) superHeroDao.findAllByOrderByFirstnameDesc();
+	}
+
+	@Override
+	public List<SuperHero> findAllSortByLastnameAsc() {
+		return (List<SuperHero>) superHeroDao.findAllByOrderByLastnameAsc();
+	}
+
+	@Override
+	public List<SuperHero> findAllSortByLastnameDesc() {
+		return (List<SuperHero>) superHeroDao.findAllByOrderByLastnameDesc();
+	}
+
 }
