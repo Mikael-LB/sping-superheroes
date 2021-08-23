@@ -7,9 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.transaction.Transactional;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -143,8 +140,8 @@ public class SuperHero {
 
 	@Override
 	public String toString() {
-		return "SuperHero [id=" + id + ", nickname=" + nickname + ", superpower=" + superpower + ", firstname="
-				+ firstname + ", lastname=" + lastname + ", dateOfBirth=" + dateOfBirth + ", category=" + category
+		return "SuperHero [id=" + id + ", nickname=" + nickname + ", firstname="
+				+ firstname + ", lastname=" + lastname + ", dateOfBirth=" + dateOfBirth
 				+ "]";
 	}
 }
