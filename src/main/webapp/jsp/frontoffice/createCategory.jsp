@@ -12,15 +12,20 @@
 <body>
 	<%@include file="navmenu/mainMenu.jsp"%>
 	<h1>Nouvelle catégorie</h1>
+	<p>
+		Liste des catégories existantes : <select>
+			<c:forEach var="cat" items="${ categoryList }">
+				<option value="${cat.id}">${cat.name }</option>
+			</c:forEach>
+		</select>
+	</p>
+
 	<form:form action="/category/create" method="post"
 		modelAttribute="categoryForm">
 		<p>
-			<form:label path="name">Category</form:label>
-			<form:select path="name">
-				<c:forEach var="cat" items="${ categoryList }">
-					<form:option value="${cat}">${cat.name }</form:option>
-				</c:forEach>
-			</form:select>
+			<form:label path="name">Nom de nouvelle catégorie</form:label>
+			:
+			<form:input path="name" />
 		</p>
 		<form:button>Enregistrer</form:button>
 	</form:form>

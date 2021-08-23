@@ -30,7 +30,7 @@ public class CategoryController {
 	@PostMapping("/create")
 	public ModelAndView createCategory(@ModelAttribute("categoryForm") Category cat) {
 		ModelAndView mav = new ModelAndView("redirect:/category/create");
-		System.out.println(cat);
+		categoryService.createOrUpdate(cat);
 		return mav;
 	}
 }

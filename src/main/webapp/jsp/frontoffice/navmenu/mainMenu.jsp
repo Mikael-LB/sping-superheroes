@@ -21,6 +21,9 @@
 		<button>
 			<a href="/superpower/list">Liste des superpouvoirs</a>
 		</button>
+		<button>
+			<a href="/category/create">Ajouter catégorie</a>
+		</button>
 	</nav>
 </body>
 </html>
