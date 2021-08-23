@@ -90,11 +90,13 @@ public class SuperHeroController {
 	 */
 	@GetMapping("/create")
 	public ModelAndView showCreateForm() {
-		CategoryEnum[] categoryEnum = CategoryEnum.values();
+//		remove the enum usage cause no need with db
+//		CategoryEnum[] categoryEnum = CategoryEnum.values();
 		
 		ModelAndView mav = new ModelAndView("frontoffice/createSuperHero");
 		mav.addObject("superPowerList",superPowerService.findAll());
-		mav.addObject("categoryEnum", categoryEnum);
+		mav.addObject("categoryList", categoryService.findAll());
+//		mav.addObject("categoryEnum", categoryEnum);
 		mav.addObject("superheroForm",
 				new SuperHero("",
 						new SuperPower(),
@@ -115,29 +117,29 @@ public class SuperHeroController {
 	 */
 	@PostMapping("/create")
 	public ModelAndView create(
-			/*@ModelAttribute("superheroForm") SuperHero sh */
-			@RequestParam("nickname") String nickname,
+			@ModelAttribute("superheroForm") SuperHero sh 
+			/*@RequestParam("nickname") String nickname,
 			@RequestParam("superpower") String superpowerIdString,
 			@RequestParam("firstname") String firstname,
 			@RequestParam("lastname") String lastname,
 			@RequestParam("dateOfBirth") String dateOfBirth,
-			@RequestParam("category") CategoryEnum categoryEnum
+			@RequestParam("category") CategoryEnum categoryEnum*/
 			) {
 		
-		Category category = null;
-		try {
-			category = categoryService.findByName(categoryEnum.getMessage());
-		}catch (Exception e) {
-			System.out.println(e.getMessage());;
-		}
-		
-		Long id = Long.parseLong(superpowerIdString);
-		
-		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		SuperPower sp = superPowerService.findById(id);
-		
-		SuperHero sh = new SuperHero(nickname,sp,firstname,lastname,
-				LocalDate.parse(dateOfBirth,df),category);		
+//		Category category = null;
+//		try {
+//			category = categoryService.findByName(categoryEnum.getMessage());
+//		}catch (Exception e) {
+//			System.out.println(e.getMessage());;
+//		}
+//		
+//		Long id = Long.parseLong(superpowerIdString);
+//		
+//		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//		SuperPower sp = superPowerService.findById(id);
+//		
+//		SuperHero sh = new SuperHero(nickname,sp,firstname,lastname,
+//				LocalDate.parse(dateOfBirth,df),category);		
 		sh = superHeroService.createOrUpdate(sh);
 		
 		//Memory : redirect:route and not redirect:nameOfJspFile

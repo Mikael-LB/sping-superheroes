@@ -24,17 +24,17 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="/superheros/list/sortByNicknameAsc">Up</a> | 
-					<a href="/superheros/list/sortByNicknameDesc">Down</a>
+					<button><a href="/superheros/list/sortByNicknameAsc">&#9652;</a></button> 
+					<button><a href="/superheros/list/sortByNicknameDesc">&#9662;</a></button>
 				</td>
 				<td></td>
 				<td>
-					<a href="/superheros/list/sortByFirstnameAsc">Up</a> | 
-					<a href="/superheros/list/sortByFirstnameDesc">Down</a>
+					<button><a href="/superheros/list/sortByFirstnameAsc">&#9652;</a></button>
+					<button><a href="/superheros/list/sortByFirstnameDesc">&#9662;</a></button>
 				</td>
 				<td>
-					<a href="/superheros/list/sortByLastnameAsc">Up</a> | 
-					<a href="/superheros/list/sortByLastnameDesc">Down</a>
+					<button><a href="/superheros/list/sortByLastnameAsc">&#9652;</a></button>
+					<button><a href="/superheros/list/sortByLastnameDesc">&#9662;</a></button>
 				</td>
 				<td></td>
 				<td></td>

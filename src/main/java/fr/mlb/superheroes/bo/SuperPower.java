@@ -1,6 +1,5 @@
 package fr.mlb.superheroes.bo;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -65,9 +64,14 @@ public class SuperPower{
 		this.name = name;
 	}
 
-	/**
-	 * toString
-	 */
+	public List<SuperHero> getLstSuperHero() {
+		return lstSuperHero;
+	}
+
+	public void setLstSuperHero(List<SuperHero> lstSuperHero) {
+		this.lstSuperHero = lstSuperHero;
+	}
+
 	@Override
 	public String toString() {
 		return "SuperPower [id=" + id + ", name=" + name + "]";

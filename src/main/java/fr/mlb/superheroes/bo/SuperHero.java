@@ -143,8 +143,8 @@ public class SuperHero {
 
 	@Override
 	public String toString() {
-		return "SuperHero [id=" + id + ", nickname=" + nickname + ", superpower=" + superpower + ", firstname="
-				+ firstname + ", lastname=" + lastname + ", dateOfBirth=" + dateOfBirth + ", category=" + category
+		return "SuperHero [id=" + id + ", nickname=" + nickname + ", firstname="
+				+ firstname + ", lastname=" + lastname + ", dateOfBirth=" + dateOfBirth
 				+ "]";
 	}
 }

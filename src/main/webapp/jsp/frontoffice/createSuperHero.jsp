@@ -20,10 +20,8 @@
 		</p>
 		<p>
 			<form:label path="superpower">Super pouvoir</form:label>
-			<form:select path="superpower">
-				<c:forEach var="suppwr" items="${ superPowerList }">
-					<form:option value="${ suppwr.id }">${ suppwr.name }</form:option>
-				</c:forEach>
+			<form:select path="superpower" items="${superPowerList}" 
+			itemValue="id" itemLabel="name">
 			</form:select>
 		</p>
 		<p>
@@ -40,9 +38,9 @@
 		</p>
 		<p>
 			<form:label path="category">Category</form:label>
-			<form:select path="category" id="category">
-				<c:forEach var="cat" items="${ categoryEnum }">
-					<form:option value="${cat}">${cat.message }</form:option>
+			<form:select path="category">
+				<c:forEach var="cat" items="${ categoryList }">
+					<form:option value="${cat.id}">${cat.name }</form:option>
 				</c:forEach>
 			</form:select>
 		</p>
