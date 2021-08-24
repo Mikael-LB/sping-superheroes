@@ -48,7 +48,8 @@ public class Utils {
 				shService.createOrUpdate(
 						new SuperHero(
 								"Wonderwoman",
-								lstSuperPower.get(1),								"Super",
+								lstSuperPower.get(1),
+								"Super",
 								"Woman",
 								LocalDate.now(),
 								lstCategory.get(1)
@@ -69,13 +70,13 @@ public class Utils {
 		if (spService.findAll().isEmpty()) {
 			lstSuperPower.add(
 					spService.createOrUpdate(
-							new SuperPower("Armure")));
+							new SuperPower("shield")));
 			lstSuperPower.add(
 					spService.createOrUpdate(
-							new SuperPower("Fouet")));
+							new SuperPower("whip")));
 			lstSuperPower.add(
 					spService.createOrUpdate(
-							new SuperPower("Laser")));
+							new SuperPower("laser")));
 		}else {
 			lstSuperPower = spService.findAll();
 		}

@@ -12,3 +12,9 @@ function exec() {
 		alert("badaboum");
 	});
 }
+
+function handleChangeLanguageSelect(value){
+	if(value) {
+		window.location.replace('?lang='+ value);
+	}
+}

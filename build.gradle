@@ -24,6 +24,8 @@ dependencies {
 	implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
   	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+  	//validation
+  	implementation 'org.springframework.boot:spring-boot-starter-validation'
 }
 
 test {

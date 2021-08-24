@@ -1,9 +1,9 @@
 package fr.mlb.superheroes.bo;
 
 public enum CategoryEnum {
-	Gentil("Gentil"),
-	Méchant("Méchant"),
-	GentilMéchant("Gentil/Méchant");
+	Gentil("good"),
+	Méchant("bad"),
+	GentilMéchant("goodbad");
 	
 	private String message;
 
