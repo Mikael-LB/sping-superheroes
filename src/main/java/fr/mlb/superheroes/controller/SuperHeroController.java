@@ -4,8 +4,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.datetime.DateFormatter;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -85,18 +88,16 @@ public class SuperHeroController {
 	}
 
 	/**
-	 * Method to acces to the form page to create a new SuperHero
+	 * Method to access to the form page to create a new SuperHero
 	 * @return
 	 */
 	@GetMapping("/create")
-	public ModelAndView showCreateForm() {
-//		remove the enum usage cause no need with db
-//		CategoryEnum[] categoryEnum = CategoryEnum.values();
+	public ModelAndView showCreateForm(SuperHero sh) {
 		
 		ModelAndView mav = new ModelAndView("frontoffice/createSuperHero");
 		mav.addObject("superPowerList",superPowerService.findAll());
 		mav.addObject("categoryList", categoryService.findAll());
-//		mav.addObject("categoryEnum", categoryEnum);
+		if(sh == null) {
 		mav.addObject("superheroForm",
 				new SuperHero("",
 						new SuperPower(),
@@ -104,6 +105,9 @@ public class SuperHeroController {
 						"",
 						LocalDate.now(),
 						new Category()));
+		}else {
+			mav.addObject("superheroForm", sh);
+		}
 		return mav;
 	}
 	
@@ -117,31 +121,14 @@ public class SuperHeroController {
 	 */
 	@PostMapping("/create")
 	public ModelAndView create(
-			@ModelAttribute("superheroForm") SuperHero sh 
-			/*@RequestParam("nickname") String nickname,
-			@RequestParam("superpower") String superpowerIdString,
-			@RequestParam("firstname") String firstname,
-			@RequestParam("lastname") String lastname,
-			@RequestParam("dateOfBirth") String dateOfBirth,
-			@RequestParam("category") CategoryEnum categoryEnum*/
+			@ModelAttribute("superheroForm") @Valid SuperHero sh,
+			BindingResult result
 			) {
-		
-//		Category category = null;
-//		try {
-//			category = categoryService.findByName(categoryEnum.getMessage());
-//		}catch (Exception e) {
-//			System.out.println(e.getMessage());;
-//		}
-//		
-//		Long id = Long.parseLong(superpowerIdString);
-//		
-//		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//		SuperPower sp = superPowerService.findById(id);
-//		
-//		SuperHero sh = new SuperHero(nickname,sp,firstname,lastname,
-//				LocalDate.parse(dateOfBirth,df),category);		
-		sh = superHeroService.createOrUpdate(sh);
-		
+		if (result.hasErrors()) {
+			return showCreateForm(sh);
+		}else {
+			sh = superHeroService.createOrUpdate(sh);
+		}
 		//Memory : redirect:route and not redirect:nameOfJspFile
 		ModelAndView mav = new ModelAndView("redirect:/superheros/detail/"
 											+sh.getId());

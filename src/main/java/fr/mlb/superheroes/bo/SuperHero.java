@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -14,13 +17,25 @@ public class SuperHero {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@NotBlank(message="{bean.field.notempty}")
 	private String nickname;
+	
+	@NotNull(message="{bean.field.notnull}")
 	@ManyToOne
 	private SuperPower superpower;
+	
+	@NotBlank(message="{bean.field.notempty}")
 	private String firstname;
+	
+	@NotBlank(message="{bean.field.notempty}")
 	private String lastname;
+	
+	@NotNull(message="{bean.field.notnull}")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate dateOfBirth;
+	
+	@NotNull(message="{bean.field.notnull}")
 	@ManyToOne
 	private Category category;
 	
