@@ -27,7 +27,6 @@ public class SuperPowerServiceImpl implements SuperPowerService {
 	@Transactional
 	public void delete(Long id) {
 		superPowerDao.deleteById(id);
-
 	}
 
 	@Override

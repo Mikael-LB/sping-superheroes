@@ -1,33 +1,28 @@
 package fr.mlb.superheroes.controller;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.datetime.DateFormatter;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import fr.mlb.superheroes.bo.Category;
-import fr.mlb.superheroes.bo.CategoryEnum;
 import fr.mlb.superheroes.bo.SuperHero;
 import fr.mlb.superheroes.bo.SuperPower;
 import fr.mlb.superheroes.service.CategoryService;
 import fr.mlb.superheroes.service.SuperHeroService;
 import fr.mlb.superheroes.service.SuperPowerService;
-import fr.mlb.superheroes.utils.Utils;
 
-@RestController
+@Controller
 @RequestMapping("/superheros")
 public class SuperHeroController {
 	

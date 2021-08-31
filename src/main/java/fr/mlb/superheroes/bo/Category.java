@@ -48,6 +48,14 @@ public class Category {
 		this.name = name;
 	}
 
+	public List<SuperHero> getLstSuperHero() {
+		return lstSuperHero;
+	}
+
+	public void setLstSuperHero(List<SuperHero> lstSuperHero) {
+		this.lstSuperHero = lstSuperHero;
+	}
+	
 	@Override
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + "]";
